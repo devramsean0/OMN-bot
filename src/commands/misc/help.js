@@ -1,4 +1,4 @@
-
+const {embedcolor, botname} = require('../../../config.json');
 const { Command } = require('@sapphire/framework');
 const {MessageEmbed} = require('discord.js');
 module.exports = class HelpCommand extends Command {
@@ -9,6 +9,10 @@ module.exports = class HelpCommand extends Command {
 		});
 	}
     async run (message) {
-        message.channel.send('test')
+        const embed = new MessageEmbed()
+        .setColor(embedcolor)
+        .setTitle(`${botname} Help`)
+        .setDescription(`Use Slash commands pls. This bot has no support for prefix commands except for moderation`)
+        message.channel.send({embeds: [embed]})
     }
 };
