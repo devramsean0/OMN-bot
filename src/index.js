@@ -6,5 +6,16 @@ const {MessageEmbed} = require('discord.js')
 const client = new SapphireClient ({ defaultPrefix: ['*'], intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS']});
 client.once('ready', () => {
 	console.log('Ready!');
+	const data = [
+		{
+			name: 'ping',
+			description: 'Latency Test'
+		},
+		{
+			name: 'help',
+			description: 'Help command'
+		}
+	]
+	client.guilds.cache.get('893217097809821737')?.commands.set(data);
 });
 client.login(token);
