@@ -1,4 +1,5 @@
 {
     "botname":"OMN-Bot",
-    "embedcolor":"#ff6600"
+    "embedcolor":"#ff6600",
+    "prefix":"*"
 }
