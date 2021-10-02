@@ -1,8 +1,9 @@
 // libs
+const {embedcolor, botname} = require('../config.json');
 require('dotenv').config()
 const token = process.env.token;
 const { SapphireClient } = require('@sapphire/framework');
-const {MessageEmbed, ReactionUserManager} = require('discord.js')
+const {MessageEmbed} = require('discord.js')
 const client = new SapphireClient ({ defaultPrefix: ['*'], intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS']});
 client.once('ready', () => {
 	console.log('Ready!');
@@ -21,8 +22,16 @@ client.once('ready', () => {
 // slash commands
 client.on('interactionCreate', interaction => {
 	if (interaction.isCommand()) {
+		// ping command
 		if (interaction.commandName === 'ping') {
-			interaction.reply('Pong!');
+			interaction.deferReply()
+			const Ping1stresponse = interaction.editReply('Pinging...')
+			const Pinglatency = Ping1stresponse - interaction.createdTimestamp
+			const PingEmbed = new MessageEmbed()
+			.setColor(embedcolor)
+			.setTitle(`${botname} Ping`)
+			.setDescription(`latency: ${Pinglatency}`)
+			interaction.editReply({embeds: [PingEmbed]})
 		} else if (interaction.commandName === 'help') {
 			interaction.reply('help')
 		}
